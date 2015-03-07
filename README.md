@@ -25,9 +25,9 @@ yo js-lib-browserify
 Boilerplate code for a UMD compliant library will be generated. The generator also facilitates the following:
 
 1. Configures a Gruntfile for development, testing, jshint, and  distribution.
-2. Configures browserify to generate standalone (UMD compliant) library.
-3. Configures [Karma](http://karma-runner.github.io) to run all tests.
-4. Configures JSHint.
+2. Configures Browserify to generate standalone (UMD compliant) library.
+3. Configures JSHint for source and tests.
+4. Configures [Karma](http://karma-runner.github.io) to run all tests.
 5. Watches for changes and re-runs unit tests.
 
 ## License
