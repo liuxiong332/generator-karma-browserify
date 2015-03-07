@@ -1,0 +1,40 @@
+{
+  "name": "generator-js-lib-browserify",
+  "version": "0.0.0",
+  "description": "Yeoman generator for Javascript library using Browserify with Karma test runner",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sebastiencouture/generator-js-lib-browserify.git"
+  },
+  "author": {
+    "name": "Sebastien Couture",
+    "email": "",
+    "url": "https://github.com/sebastiencouture"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.18.0",
+    "chalk": "^0.5.0",
+    "yosay": "^0.3.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0",
+    "generator-karma": ">=0.9.0"
+  }
+}
