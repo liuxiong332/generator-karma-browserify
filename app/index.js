@@ -38,13 +38,6 @@ module.exports = yeoman.generators.Base.extend({
                 name: 'repoAccount',
                 message: 'What\'s your Github username',
                 store: true
-            },
-            {
-                type: 'String',
-                name: 'testFramework',
-                message: 'Choose test framework. jasmine/mocha',
-                default: 'jasmine',
-                store: true
             }
         ];
 
@@ -52,7 +45,6 @@ module.exports = yeoman.generators.Base.extend({
             this.libraryName = this._.slugify(this._.humanize(props.libraryName));
             this.authorName = props.authorName;
             this.repoAccount = props.repoAccount;
-            this.testFramework = props.testFramework;
 
             done();
         }.bind(this));
@@ -120,10 +112,7 @@ module.exports = yeoman.generators.Base.extend({
             );
             this.fs.copyTpl(
                 this.templatePath('test/jshintrc'),
-                this.destinationPath('test/.jshintrc'),
-                {
-                    testFramework: this.testFramework
-                }
+                this.destinationPath('test/.jshintrc')
             );
         },
 
@@ -161,19 +150,20 @@ module.exports = yeoman.generators.Base.extend({
                 this.templatePath('travis.yml'),
                 this.destinationPath('.travis.yml')
             );
+        },
+
+        karmaFile: function() {
+            this.fs.copyTpl(
+                this.templatePath('test/_karma.conf.js'),
+                this.destinationPath('test/karma.conf.js'),
+                {
+                    libraryName: this.libraryName
+                }
+            );
         }
     },
 
     install: function () {
-        this.composeWith('karma', {
-            options: {
-                'test-framework': this.testFramework,
-                'skip-install': this.options['skip-install'],
-                'base-path' : '../',
-                'test-files' : 'build/' + this.libraryName + '.spec.js'
-            }
-        });
-
         this.installDependencies({
             skipInstall: this.options['skip-install']
         });
