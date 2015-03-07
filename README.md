@@ -1,4 +1,4 @@
-# generator-js-lib [![Build Status](https://secure.travis-ci.org/sebastiencouture/generator-js-lib-browserify.png?branch=master)](https://travis-ci.org/sebastiencouture/generator-js-lib)
+# generator-js-lib-browserify [![Build Status](https://secure.travis-ci.org/sebastiencouture/generator-js-lib-browserify.png?branch=master)](https://travis-ci.org/sebastiencouture/generator-js-lib)
 
 > [Yeoman](http://yeoman.io) generator for Javascript library using Browserify with Karma test runner
 
@@ -26,8 +26,9 @@ Boilerplate code for a UMD compliant library will be generated. The generator al
 
 1. Configures a Gruntfile for development, testing, jshint, and  distribution.
 2. Configures browserify to generate standalone (UMD compliant) library.
-2. Configures [Karma](http://karma-runner.github.io) to run all tests.
-3. Watches for changes and re-runs unit tests.
+3. Configures [Karma](http://karma-runner.github.io) to run all tests.
+4. Configures JSHint.
+5. Watches for changes and re-runs unit tests.
 
 ## License
 
