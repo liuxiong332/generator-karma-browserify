@@ -15,7 +15,7 @@ describe('js-lib:app', function () {
             .inDir(path.join(os.tmpdir(), './temp-test'))
             .withOptions({ 'skip-install': true })
             .withGenerators(deps)
-            .withPrompt({
+            .withPrompts({
                 libraryName: "test-lib",
                 authorName: "Sebastien Couture",
                 repoAccount: "sebastiencouture",
@@ -41,7 +41,8 @@ describe('js-lib:app', function () {
     it('should create library files', function() {
         assert.file([
             'src/test-lib.js',
-            'test/test-lib.spec.js',
+            'src/module-a.js',
+            'test/module-a.spec.js',
             'test/.jshintrc'
         ]);
     });
