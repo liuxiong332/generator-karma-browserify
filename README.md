@@ -8,9 +8,14 @@ To install Yeoman from npm, run:
 
 ```bash
 npm install -g yo
+
 ```
 
 To install generator-js-lib from npm, run:
+
+```bash
+npm install -g generator-karma
+```
 
 ```bash
 npm install -g generator-js-lib-browserify
