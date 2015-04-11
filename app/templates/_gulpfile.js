@@ -2,13 +2,15 @@
 
 var gulp   = require('gulp');
 var karma = require('karma').server;
+var path = require('path');
 
+var configFile = path.resolve(__dirname, 'spec/karma.conf.js');
 /**
  * Run test once and exit
  */
 gulp.task('test', function (done) {
   karma.start({
-    configFile: __dirname + '/karma.conf.js',
+    configFile: configFile,
     singleRun: true
   }, done);
 });
@@ -18,6 +20,6 @@ gulp.task('test', function (done) {
  */
 gulp.task('dev', function (done) {
   karma.start({
-    configFile: __dirname + '/karma.conf.js'
+    configFile: configFile,
   }, done);
 });

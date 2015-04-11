@@ -37,7 +37,7 @@ module.exports = yeoman.generators.Base.extend({
         name: 'browsers',
         message: 'Which browser you need to use for test',
         choices: this.allBrowsers,
-        default: 'PhantomJS'
+        default: ['PhantomJS']
       }
     ];
 
@@ -56,7 +56,8 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
     configFile: function() {
       this.template('_gulpfile.js', 'gulpfile.js');
-      this.template('_karma.conf.js', 'karma.conf.js');
+      this.template('spec/_karma.conf.js', 'spec/karma.conf.js');
+      this.template('spec/_sample.js', 'spec/sample.js');
     },
     packageFile: function() {
       var pkg = JSON.parse(this.read('_package.json'));
