@@ -10,16 +10,20 @@ var deps = [
 ];
 
 describe('js-lib:app', function () {
-  before(function (done) {
-    helpers.run(path.join(__dirname, '../app'))
-      .inDir(path.join(__dirname, './temp-test'))
-      .withOptions({ 'skip-install': true })
-      .withGenerators(deps)
-      .withPrompts({
-        testFramework: "jasmine",
-        browsers: ['Chrome'],
-      })
-      .on('end', done);
+  beforeEach(function(done) {
+    var testDir = path.join(__dirname, './temp-test');
+    helpers.testDirectory(testDir, function() {
+      console.log(process.cwd());
+      helpers.run(path.join(__dirname, '../app'))
+        .inDir(testDir)
+        .withOptions({ 'skip-install': true })
+        .withGenerators(deps)
+        .withPrompts({
+          testFramework: "",
+          browsers: [],
+        })
+        .on('end', done);
+    });
   });
 
   it('should create project files', function () {
@@ -29,7 +33,7 @@ describe('js-lib:app', function () {
     ]);
     assert.fileContent([
       ['karma.conf.js', 'frameworks: [\'jasmine\', \'browserify\']'],
-      ['karma.conf.js', 'browsers: [\'Chrome\']']
-    ])
+      ['karma.conf.js', 'browsers: []']
+    ]);
   });
 });

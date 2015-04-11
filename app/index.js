@@ -53,35 +53,49 @@ module.exports = yeoman.generators.Base.extend({
     }.bind(this));
   },
 
-  writing: function() {
-    this.template('_gulpfile.js', 'gulpfile.js');
-    this.template('_karma.conf.js', 'karma.conf.js');
+  writing: {
+    configFile: function() {
+      this.template('_gulpfile.js', 'gulpfile.js');
+      this.template('_karma.conf.js', 'karma.conf.js');
+    },
+    packageFile: function() {
+      var pkg = JSON.parse(this.read('_package.json'));
+      var self = this;
+      var omitPackages = [];
+
+      var omitTestFrameworks =  _.reject(this.allTestFrameworks, function(obj) {
+        console.log('reject: ' + (obj === self.testFramework));
+        return obj === self.testFramework;
+      });
+      omitTestFrameworks = _.map(omitTestFrameworks, function(name) {
+        return 'karma-' + name.toLowerCase();
+      });
+
+      var omitBrowsers = _.reject(this.allBrowsers, function(name) {
+        return self.browsers.indexOf(name) != -1;
+      });
+      omitBrowsers = _.map(omitBrowsers, function(name) {
+        return 'karma-' + name.toLowerCase() + '-launcher';
+      });
+      omitPackages = omitPackages.concat(omitTestFrameworks, omitBrowsers);
+      console.log(JSON.stringify(omitPackages));
+
+      pkg.devDependencies = _.omit(pkg.devDependencies, omitPackages);
+      console.log(pkg.devDependencies);
+
+      if(fs.existsSync('package.json')) {
+        var curPkg = JSON.parse(fs.readFileSync('package.json'));
+        curPkg = _.extend(curPkg, pkg);
+      }
+      fs.writeFileSync('package.json', JSON.stringify(curPkg, null, 2));
+    },
   },
 
-  dependency: function() {
-    var cb = this.async();
-
-    var pkg = JSON.parse(this.read('_package.json'));
-    if(fs.existsSync('package.json')) {
-      var curPkg = JSON.parse(fs.readFileSync('package.json'));
-      curPkg = _.extend(curPkg, _.omit(pkg, 'devDependencies'));
-      fs.writeFileSync('package.json', JSON.stringify(curPkg));
-    }
-    var self = this;
-    var omitPackages = [];
-    var omitTestFrameworks =  _.reject(this.allTestFrameworks, function(obj) {
-      console.log('reject: ' + (obj === self.testFramework));
-      return obj === self.testFramework;
+  install: function() {
+    this.installDependencies({
+      bower: false,
+      skipInstall: this.options['skip-install']
     });
-    var omitBrowsers = _.reject(this.allBrowsers, function(name) {
-      return self.browsers.indexOf(name) != -1;
-    });
-    omitPackages = omitPackages.concat(omitTestFrameworks, omitBrowsers);
-
-    pkg.devDependencies = _.omit(pkg.devDependencies, omitPackages);
-    console.log(pkg.devDependencies);
-
-    this.npmInstall(pkg.devDependencies, {'--save-dev': true}, cb);
   },
 
 });
