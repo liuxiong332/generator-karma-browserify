@@ -23,7 +23,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'lib/*.js'
+      'spec/**/*.js'
     ],
 
     // list of files / patterns to exclude
@@ -63,10 +63,5 @@ module.exports = function(config) {
     // },
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
-    // browserify configuration
-    browserify: {
-      debug: true,
-      transform: [ 'brfs', 'browserify-shim' ]
-    }
   });
 };

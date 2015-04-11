@@ -3,6 +3,7 @@
     "test": "node ./node_modules/karma/bin/karma start"
   },
   "devDependencies": {
+    "gulp": "^3.8.11",
     "brfs": "^1.4.0",
     "browserify-shim": "~3.8.0",
     "karma": "^0.12.31",
@@ -10,7 +11,7 @@
     "karma-jasmine": "^0.3.5",
     "karma-mocha": "^0.1.10",
     "karma-chrome-launcher": "^0.1.7",
-    "karma-phantomjs-launcher": "^0.1.4"
+    "karma-phantomjs-launcher": "^0.1.4",
   },
   "browserify-shim": {
     "external": "global:External"

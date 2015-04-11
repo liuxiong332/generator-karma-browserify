@@ -83,10 +83,16 @@ module.exports = yeoman.generators.Base.extend({
       pkg.devDependencies = _.omit(pkg.devDependencies, omitPackages);
       console.log(pkg.devDependencies);
 
+      var curPkg = {};
       if(fs.existsSync('package.json')) {
-        var curPkg = JSON.parse(fs.readFileSync('package.json'));
-        curPkg = _.extend(curPkg, pkg);
+        try {
+          curPkg = JSON.parse(fs.readFileSync('package.json'));
+        } catch(e) {
+          curPkg = {};
+        }
       }
+      curPkg = _.extend(curPkg, pkg);
+      console.log(curPkg);
       fs.writeFileSync('package.json', JSON.stringify(curPkg, null, 2));
     },
   },
