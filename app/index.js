@@ -3,7 +3,6 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
 var path = require('path');
-var fs = require('fs');
 var _ = require('underscore');
 
 module.exports = yeoman.generators.Base.extend({
@@ -49,6 +48,7 @@ module.exports = yeoman.generators.Base.extend({
       this.browsersRepr = '[' + this.browsers.map(function(browser) {
         return '\'' + browser + '\'';
       }).join(', ') + ']';
+      console.log(this.browsersRepr + '.');
       done();
     }.bind(this));
   },
@@ -79,22 +79,9 @@ module.exports = yeoman.generators.Base.extend({
         return 'karma-' + name.toLowerCase() + '-launcher';
       });
       omitPackages = omitPackages.concat(omitTestFrameworks, omitBrowsers);
-      console.log(JSON.stringify(omitPackages));
-
       pkg.devDependencies = _.omit(pkg.devDependencies, omitPackages);
-      console.log(pkg.devDependencies);
-
-      var curPkg = {};
-      if(fs.existsSync('package.json')) {
-        try {
-          curPkg = JSON.parse(fs.readFileSync('package.json'));
-        } catch(e) {
-          curPkg = {};
-        }
-      }
-      curPkg = _.extend(curPkg, pkg);
-      console.log(curPkg);
-      fs.writeFileSync('package.json', JSON.stringify(curPkg, null, 2));
+      console.log(process.cwd());
+      this.write('package.json', JSON.stringify(pkg, null, 2));
     },
   },
 

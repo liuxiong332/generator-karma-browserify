@@ -11,7 +11,7 @@ if (process.env.CI) {
 }
 
 gulp.task('test', function () {
-  gulp.src(['test/**/*.js', '!test/temp-test/**'], {cwd: __dirname})
+  gulp.src(['test/**/*.js', '!test/temp/**'], {cwd: __dirname})
     .pipe(plugins.plumber(plumberConf))
     .pipe(plugins.mocha({ reporter: 'spec' }));
 });
