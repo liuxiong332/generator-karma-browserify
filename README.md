@@ -1,4 +1,4 @@
-# generator-js-lib-browserify [![Build Status](https://secure.travis-ci.org/sebastiencouture/generator-js-lib-browserify.png?branch=master)](https://travis-ci.org/sebastiencouture/generator-js-lib)
+# generator-js-lib-browserify [![Build Status](https://secure.travis-ci.org/liuxiong332/generator-karma-browserify.png?branch=master)](https://travis-ci.org/liuxiong332/generator-karma-browserify)
 
 > [Yeoman](http://yeoman.io) generator for Javascript library using Browserify with Karma test runner
 
@@ -14,18 +14,18 @@ npm install -g yo
 To install generator-js-lib from npm, run:
 
 ```bash
-npm install -g generator-js-lib-browserify
+npm install -g generator-karma-browserify
 ```
 
 Finally, initiate the generator:
 
 ```bash
-yo js-lib-browserify
+yo karma-browserify
 ```
 
 Boilerplate code for a UMD compliant library will be generated. The generator also facilitates the following:
 
-1. Configures a Gruntfile for development, testing, jshint, and  distribution.
+1. Configures a gulpfile for development, testing, jshint, and  distribution.
 2. Configures Browserify to generate standalone (UMD compliant) library.
 3. Configures JSHint for source and tests.
 4. Configures [Karma](http://karma-runner.github.io) to run all tests.
